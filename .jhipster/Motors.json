@@ -1,0 +1,24 @@
+{
+    "name": "Motors",
+    "fields": [
+        {
+            "fieldName": "motorName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190713224919",
+    "entityTableName": "motors",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

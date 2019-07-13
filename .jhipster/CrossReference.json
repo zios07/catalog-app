@@ -1,0 +1,43 @@
+{
+    "name": "CrossReference",
+    "fields": [
+        {
+            "fieldName": "codeInProvider",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 30
+        },
+        {
+            "fieldName": "viewCatalog",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "providers",
+            "otherEntityRelationshipName": "crossReference",
+            "relationshipName": "providers",
+            "otherEntityField": "providerName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "parts",
+            "otherEntityRelationshipName": "crossReference",
+            "relationshipName": "parts",
+            "otherEntityField": "partsName"
+        }
+    ],
+    "changelogDate": "20190713224925",
+    "entityTableName": "cross_reference",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

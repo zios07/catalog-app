@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span>Parts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-parts" [routerLink]="['/parts/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Parts
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="parts?.length === 0">
+        <span>No parts found</span>
+    </div>
+    <div class="table-responsive" *ngIf="parts?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codeParts"><span>Code Parts</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partsName"><span>Parts Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partImageLinkPic360"><span>Part Image Link Pic 360</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partVideo"><span>Part Video</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="partTechnicalManual"><span>Part Technical Manual</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="underDevelopment"><span>Under Development</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="inactive"><span>Inactive</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ean"><span>Ean</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sku"><span>Sku</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="families.familyName"><span>Families</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let parts of parts ;trackBy: trackId">
+                <td><a [routerLink]="['/parts', parts.id, 'view' ]">{{parts.id}}</a></td>
+                <td>{{parts.codeParts}}</td>
+                <td>{{parts.partsName}}</td>
+                <td>{{parts.partImageLinkPic360}}</td>
+                <td>{{parts.partVideo}}</td>
+                <td>{{parts.partTechnicalManual}}</td>
+                <td>{{parts.underDevelopment}}</td>
+                <td>{{parts.inactive}}</td>
+                <td>{{parts.ean}}</td>
+                <td>{{parts.sku}}</td>
+                <td>
+                    <div *ngIf="parts.families">
+                        <a [routerLink]="['../families', parts.families?.id, 'view' ]" >{{parts.families?.familyName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/parts', parts.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/parts', parts.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'parts', { outlets: { popup: parts.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="parts?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

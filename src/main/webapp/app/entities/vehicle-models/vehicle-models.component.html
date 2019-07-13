@@ -1,0 +1,107 @@
+<div>
+    <h2 id="page-heading">
+        <span>Vehicle Models</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-vehicle-models" [routerLink]="['/vehicle-models/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Vehicle Models
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="vehicleModels?.length === 0">
+        <span>No vehicleModels found</span>
+    </div>
+    <div class="table-responsive" *ngIf="vehicleModels?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="vehicleModel"><span>Vehicle Model</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startProduction"><span>Start Production</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="finishProduction"><span>Finish Production</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startChassi"><span>Start Chassi</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fineshChassi"><span>Finesh Chassi</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="code"><span>Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fleetQuantity"><span>Fleet Quantity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="vehicles.vehicleName"><span>Vehicles</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="motors.motorName"><span>Motors</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transmission.transmissionName"><span>Transmission</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="steering.steeringName"><span>Steering</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nationalities.nationalityName"><span>Nationalities</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vehicleModels of vehicleModels ;trackBy: trackId">
+                <td><a [routerLink]="['/vehicle-models', vehicleModels.id, 'view' ]">{{vehicleModels.id}}</a></td>
+                <td>{{vehicleModels.vehicleModel}}</td>
+                <td>{{vehicleModels.startProduction | date:'mediumDate'}}</td>
+                <td>{{vehicleModels.finishProduction | date:'mediumDate'}}</td>
+                <td>{{vehicleModels.startChassi}}</td>
+                <td>{{vehicleModels.fineshChassi}}</td>
+                <td>{{vehicleModels.code}}</td>
+                <td>{{vehicleModels.fleetQuantity}}</td>
+                <td>
+                    <div *ngIf="vehicleModels.vehicles">
+                        <a [routerLink]="['../vehicles', vehicleModels.vehicles?.id, 'view' ]" >{{vehicleModels.vehicles?.vehicleName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicleModels.motors">
+                        <a [routerLink]="['../motors', vehicleModels.motors?.id, 'view' ]" >{{vehicleModels.motors?.motorName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicleModels.transmission">
+                        <a [routerLink]="['../transmission', vehicleModels.transmission?.id, 'view' ]" >{{vehicleModels.transmission?.transmissionName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicleModels.steering">
+                        <a [routerLink]="['../steering', vehicleModels.steering?.id, 'view' ]" >{{vehicleModels.steering?.steeringName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="vehicleModels.nationalities">
+                        <a [routerLink]="['../nationalities', vehicleModels.nationalities?.id, 'view' ]" >{{vehicleModels.nationalities?.nationalityName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/vehicle-models', vehicleModels.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/vehicle-models', vehicleModels.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'vehicle-models', { outlets: { popup: vehicleModels.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="vehicleModels?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

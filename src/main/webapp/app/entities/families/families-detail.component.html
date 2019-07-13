@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="families">
+            <h2><span>Families</span> {{families.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Family Name</span></dt>
+                <dd>
+                    <span>{{families.familyName}}</span>
+                </dd>
+                <dt><span>Family Image</span></dt>
+                <dd>
+                    <span>{{families.familyImage}}</span>
+                </dd>
+                <dt><span>Family Icon</span></dt>
+                <dd>
+                    <span>{{families.familyIcon}}</span>
+                </dd>
+                <dt><span>Lines</span></dt>
+                <dd>
+                    <div *ngIf="families.lines">
+                        <a [routerLink]="['/lines', families.lines?.id, 'view']">{{families.lines?.lineName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/families', families.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

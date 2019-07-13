@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="characteristics">
+            <h2><span>Characteristics</span> {{characteristics.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Characteristics Name</span></dt>
+                <dd>
+                    <span>{{characteristics.characteristicsName}}</span>
+                </dd>
+                <dt><span>View Catalog</span></dt>
+                <dd>
+                    <span>{{characteristics.viewCatalog}}</span>
+                </dd>
+                <dt><span>View Special Client</span></dt>
+                <dd>
+                    <span>{{characteristics.viewSpecialClient}}</span>
+                </dd>
+                <dt><span>Families</span></dt>
+                <dd>
+                    <div *ngIf="characteristics.families">
+                        <a [routerLink]="['/families', characteristics.families?.id, 'view']">{{characteristics.families?.familyName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/characteristics', characteristics.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

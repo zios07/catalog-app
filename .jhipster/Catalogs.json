@@ -1,0 +1,54 @@
+{
+    "name": "Catalogs",
+    "fields": [
+        {
+            "fieldName": "catalogName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "catalogoImagemCover1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "catalogoImagemCover2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "catalogoImagemCover3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "catalogoImagemCover4",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "lines",
+            "otherEntityRelationshipName": "catalogs",
+            "relationshipName": "lines"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "catalogs",
+            "relationshipName": "user",
+            "otherEntityField": "login"
+        }
+    ],
+    "changelogDate": "20190713224910",
+    "entityTableName": "catalogs",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

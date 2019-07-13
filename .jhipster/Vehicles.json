@@ -1,0 +1,40 @@
+{
+    "name": "Vehicles",
+    "fields": [
+        {
+            "fieldName": "vehicle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "vehicleBrands",
+            "otherEntityRelationshipName": "vehicles",
+            "relationshipName": "vehicleBrands",
+            "otherEntityField": "vehicleBrandName"
+        }
+    ],
+    "changelogDate": "20190713224918",
+    "entityTableName": "vehicles",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

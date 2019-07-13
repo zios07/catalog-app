@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-transmission-heading">Create or edit a Transmission</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transmissionName">Transmission Name</label>
+                    <input type="text" class="form-control" name="transmissionName" id="field_transmissionName"
+                           formControlName="transmissionName"/>
+                    <div *ngIf="editForm.get('transmissionName').invalid && (editForm.get('transmissionName').dirty || editForm.get('transmissionName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transmissionName').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('transmissionName').errors.maxlength">
+                        This field cannot be longer than 40 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transmissaoImage">Transmissao Image</label>
+                    <input type="text" class="form-control" name="transmissaoImage" id="field_transmissaoImage"
+                           formControlName="transmissaoImage"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

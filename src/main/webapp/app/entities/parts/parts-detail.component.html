@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="parts">
+            <h2><span>Parts</span> {{parts.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Code Parts</span></dt>
+                <dd>
+                    <span>{{parts.codeParts}}</span>
+                </dd>
+                <dt><span>Parts Name</span></dt>
+                <dd>
+                    <span>{{parts.partsName}}</span>
+                </dd>
+                <dt><span>Part Image Link Pic 360</span></dt>
+                <dd>
+                    <span>{{parts.partImageLinkPic360}}</span>
+                </dd>
+                <dt><span>Part Video</span></dt>
+                <dd>
+                    <span>{{parts.partVideo}}</span>
+                </dd>
+                <dt><span>Part Technical Manual</span></dt>
+                <dd>
+                    <span>{{parts.partTechnicalManual}}</span>
+                </dd>
+                <dt><span>Under Development</span></dt>
+                <dd>
+                    <span>{{parts.underDevelopment}}</span>
+                </dd>
+                <dt><span>Inactive</span></dt>
+                <dd>
+                    <span>{{parts.inactive}}</span>
+                </dd>
+                <dt><span>Ean</span></dt>
+                <dd>
+                    <span>{{parts.ean}}</span>
+                </dd>
+                <dt><span>Sku</span></dt>
+                <dd>
+                    <span>{{parts.sku}}</span>
+                </dd>
+                <dt><span>Vehicle Models</span></dt>
+                <dd>
+                    <span *ngFor="let vehicleModels of parts.vehicleModels; let last = last">
+                        <a [routerLink]="['/vehicle-models', vehicleModels?.id, 'view' ]">{{vehicleModels.vehicleModel}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Families</span></dt>
+                <dd>
+                    <div *ngIf="parts.families">
+                        <a [routerLink]="['/families', parts.families?.id, 'view']">{{parts.families?.familyName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/parts', parts.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

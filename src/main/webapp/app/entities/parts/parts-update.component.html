@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-parts-heading">Create or edit a Parts</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codeParts">Code Parts</label>
+                    <input type="text" class="form-control" name="codeParts" id="field_codeParts"
+                           formControlName="codeParts"/>
+                    <div *ngIf="editForm.get('codeParts').invalid && (editForm.get('codeParts').dirty || editForm.get('codeParts').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codeParts').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codeParts').errors.maxlength">
+                        This field cannot be longer than 30 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_partsName">Parts Name</label>
+                    <input type="text" class="form-control" name="partsName" id="field_partsName"
+                           formControlName="partsName"/>
+                    <div *ngIf="editForm.get('partsName').invalid && (editForm.get('partsName').dirty || editForm.get('partsName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('partsName').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_partImageLinkPic360">Part Image Link Pic 360</label>
+                    <input type="text" class="form-control" name="partImageLinkPic360" id="field_partImageLinkPic360"
+                           formControlName="partImageLinkPic360"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_partVideo">Part Video</label>
+                    <input type="text" class="form-control" name="partVideo" id="field_partVideo"
+                           formControlName="partVideo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_partTechnicalManual">Part Technical Manual</label>
+                    <input type="text" class="form-control" name="partTechnicalManual" id="field_partTechnicalManual"
+                           formControlName="partTechnicalManual"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_underDevelopment">Under Development</label>
+                    <input type="checkbox" class="form-control" name="underDevelopment" id="field_underDevelopment"
+                           formControlName="underDevelopment"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_inactive">Inactive</label>
+                    <input type="checkbox" class="form-control" name="inactive" id="field_inactive"
+                           formControlName="inactive"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ean">Ean</label>
+                    <input type="text" class="form-control" name="ean" id="field_ean"
+                           formControlName="ean"/>
+                    <div *ngIf="editForm.get('ean').invalid && (editForm.get('ean').dirty || editForm.get('ean').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ean').errors.minlength">
+                        This field is required to be at least 13 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sku">Sku</label>
+                    <input type="text" class="form-control" name="sku" id="field_sku"
+                           formControlName="sku"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_vehicleModels">Vehicle Models</label>
+                    <select class="form-control" id="field_vehicleModels" multiple name="vehicleModels" formControlName="vehicleModels">
+                        <option [ngValue]="getSelected(editForm.get('vehicleModels').value, vehicleModelsOption)" *ngFor="let vehicleModelsOption of vehiclemodels; trackBy: trackVehicleModelsById">{{vehicleModelsOption.vehicleModel}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_families">Families</label>
+                    <select class="form-control" id="field_families" name="families" formControlName="families">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="familiesOption.id === editForm.get('families').value?.id ? editForm.get('families').value : familiesOption" *ngFor="let familiesOption of families; trackBy: trackFamiliesById">{{familiesOption.familyName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

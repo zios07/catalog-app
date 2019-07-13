@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="catalogs">
+            <h2><span>Catalogs</span> {{catalogs.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Catalog Name</span></dt>
+                <dd>
+                    <span>{{catalogs.catalogName}}</span>
+                </dd>
+                <dt><span>Catalogo Imagem Cover 1</span></dt>
+                <dd>
+                    <span>{{catalogs.catalogoImagemCover1}}</span>
+                </dd>
+                <dt><span>Catalogo Imagem Cover 2</span></dt>
+                <dd>
+                    <span>{{catalogs.catalogoImagemCover2}}</span>
+                </dd>
+                <dt><span>Catalogo Imagem Cover 3</span></dt>
+                <dd>
+                    <span>{{catalogs.catalogoImagemCover3}}</span>
+                </dd>
+                <dt><span>Catalogo Imagem Cover 4</span></dt>
+                <dd>
+                    <span>{{catalogs.catalogoImagemCover4}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{catalogs.user?.login}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/catalogs', catalogs.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

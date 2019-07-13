@@ -1,0 +1,104 @@
+{
+    "name": "VehicleModels",
+    "fields": [
+        {
+            "fieldName": "vehicleModel",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "startProduction",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "finishProduction",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "startChassi",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 17
+        },
+        {
+            "fieldName": "fineshChassi",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 17
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "fleetQuantity",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "vehicles",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "vehicles",
+            "otherEntityField": "vehicleName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "motors",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "motors",
+            "otherEntityField": "motorName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transmission",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "transmission",
+            "otherEntityField": "transmissionName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "steering",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "steering",
+            "otherEntityField": "steeringName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nationalities",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "nationalities",
+            "otherEntityField": "nationalityName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "parts",
+            "otherEntityRelationshipName": "vehicleModels",
+            "relationshipName": "parts",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190713224923",
+    "entityTableName": "vehicle_models",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

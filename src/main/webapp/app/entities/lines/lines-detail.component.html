@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="lines">
+            <h2><span>Lines</span> {{lines.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Line Name</span></dt>
+                <dd>
+                    <span>{{lines.lineName}}</span>
+                </dd>
+                <dt><span>Line Image</span></dt>
+                <dd>
+                    <span>{{lines.lineImage}}</span>
+                </dd>
+                <dt><span>Line Icon</span></dt>
+                <dd>
+                    <span>{{lines.lineIcon}}</span>
+                </dd>
+                <dt><span>Catalogs</span></dt>
+                <dd>
+                    <div *ngIf="lines.catalogs">
+                        <a [routerLink]="['/catalogs', lines.catalogs?.id, 'view']">{{lines.catalogs?.catalogName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lines', lines.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

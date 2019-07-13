@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>Characteristics</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-characteristics" [routerLink]="['/characteristics/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Characteristics
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="characteristics?.length === 0">
+        <span>No characteristics found</span>
+    </div>
+    <div class="table-responsive" *ngIf="characteristics?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Characteristics Name</span></th>
+            <th><span>View Catalog</span></th>
+            <th><span>View Special Client</span></th>
+            <th><span>Families</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let characteristics of characteristics ;trackBy: trackId">
+                <td><a [routerLink]="['/characteristics', characteristics.id, 'view' ]">{{characteristics.id}}</a></td>
+                <td>{{characteristics.characteristicsName}}</td>
+                <td>{{characteristics.viewCatalog}}</td>
+                <td>{{characteristics.viewSpecialClient}}</td>
+                <td>
+                    <div *ngIf="characteristics.families">
+                        <a [routerLink]="['../families', characteristics.families?.id, 'view' ]" >{{characteristics.families?.familyName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/characteristics', characteristics.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/characteristics', characteristics.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'characteristics', { outlets: { popup: characteristics.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+{
+    "name": "Nationalities",
+    "fields": [
+        {
+            "fieldName": "nationalityName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190713224922",
+    "entityTableName": "nationalities",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

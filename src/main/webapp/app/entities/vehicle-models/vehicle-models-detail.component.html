@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vehicleModels">
+            <h2><span>Vehicle Models</span> {{vehicleModels.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Vehicle Model</span></dt>
+                <dd>
+                    <span>{{vehicleModels.vehicleModel}}</span>
+                </dd>
+                <dt><span>Start Production</span></dt>
+                <dd>
+                    <span>{{vehicleModels.startProduction}}</span>
+                </dd>
+                <dt><span>Finish Production</span></dt>
+                <dd>
+                    <span>{{vehicleModels.finishProduction}}</span>
+                </dd>
+                <dt><span>Start Chassi</span></dt>
+                <dd>
+                    <span>{{vehicleModels.startChassi}}</span>
+                </dd>
+                <dt><span>Finesh Chassi</span></dt>
+                <dd>
+                    <span>{{vehicleModels.fineshChassi}}</span>
+                </dd>
+                <dt><span>Code</span></dt>
+                <dd>
+                    <span>{{vehicleModels.code}}</span>
+                </dd>
+                <dt><span>Fleet Quantity</span></dt>
+                <dd>
+                    <span>{{vehicleModels.fleetQuantity}}</span>
+                </dd>
+                <dt><span>Vehicles</span></dt>
+                <dd>
+                    <div *ngIf="vehicleModels.vehicles">
+                        <a [routerLink]="['/vehicles', vehicleModels.vehicles?.id, 'view']">{{vehicleModels.vehicles?.vehicleName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Motors</span></dt>
+                <dd>
+                    <div *ngIf="vehicleModels.motors">
+                        <a [routerLink]="['/motors', vehicleModels.motors?.id, 'view']">{{vehicleModels.motors?.motorName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Transmission</span></dt>
+                <dd>
+                    <div *ngIf="vehicleModels.transmission">
+                        <a [routerLink]="['/transmission', vehicleModels.transmission?.id, 'view']">{{vehicleModels.transmission?.transmissionName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Steering</span></dt>
+                <dd>
+                    <div *ngIf="vehicleModels.steering">
+                        <a [routerLink]="['/steering', vehicleModels.steering?.id, 'view']">{{vehicleModels.steering?.steeringName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Nationalities</span></dt>
+                <dd>
+                    <div *ngIf="vehicleModels.nationalities">
+                        <a [routerLink]="['/nationalities', vehicleModels.nationalities?.id, 'view']">{{vehicleModels.nationalities?.nationalityName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vehicle-models', vehicleModels.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

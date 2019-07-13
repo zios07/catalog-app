@@ -1,0 +1,46 @@
+{
+    "name": "Lines",
+    "fields": [
+        {
+            "fieldName": "lineName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "lineImage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lineIcon",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "families",
+            "otherEntityRelationshipName": "lines",
+            "relationshipName": "families"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "catalogs",
+            "otherEntityRelationshipName": "lines",
+            "relationshipName": "catalogs",
+            "otherEntityField": "catalogName"
+        }
+    ],
+    "changelogDate": "20190713224911",
+    "entityTableName": "lines",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
