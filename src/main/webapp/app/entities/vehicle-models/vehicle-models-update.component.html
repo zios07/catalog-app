@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-vehicle-models-heading">Create or edit a Vehicle Models</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_vehicleModel">Vehicle Model</label>
+                    <input type="text" class="form-control" name="vehicleModel" id="field_vehicleModel"
+                           formControlName="vehicleModel"/>
+                    <div *ngIf="editForm.get('vehicleModel').invalid && (editForm.get('vehicleModel').dirty || editForm.get('vehicleModel').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('vehicleModel').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('vehicleModel').errors.maxlength">
+                        This field cannot be longer than 40 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_startProduction">Start Production</label>
+                    <div class="input-group">
+                        <input id="field_startProduction" type="text" class="form-control" name="startProduction" ngbDatepicker  #startProductionDp="ngbDatepicker" formControlName="startProduction"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="startProductionDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_finishProduction">Finish Production</label>
+                    <div class="input-group">
+                        <input id="field_finishProduction" type="text" class="form-control" name="finishProduction" ngbDatepicker  #finishProductionDp="ngbDatepicker" formControlName="finishProduction"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="finishProductionDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_startChassi">Start Chassi</label>
+                    <input type="text" class="form-control" name="startChassi" id="field_startChassi"
+                           formControlName="startChassi"/>
+                    <div *ngIf="editForm.get('startChassi').invalid && (editForm.get('startChassi').dirty || editForm.get('startChassi').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('startChassi').errors.minlength">
+                        This field is required to be at least 17 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fineshChassi">Finesh Chassi</label>
+                    <input type="text" class="form-control" name="fineshChassi" id="field_fineshChassi"
+                           formControlName="fineshChassi"/>
+                    <div *ngIf="editForm.get('fineshChassi').invalid && (editForm.get('fineshChassi').dirty || editForm.get('fineshChassi').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fineshChassi').errors.minlength">
+                        This field is required to be at least 17 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                           formControlName="code"/>
+                    <div *ngIf="editForm.get('code').invalid && (editForm.get('code').dirty || editForm.get('code').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('code').errors.maxlength">
+                        This field cannot be longer than 10 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fleetQuantity">Fleet Quantity</label>
+                    <input type="number" class="form-control" name="fleetQuantity" id="field_fleetQuantity"
+                           formControlName="fleetQuantity"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_vehicles">Vehicles</label>
+                    <select class="form-control" id="field_vehicles" name="vehicles" formControlName="vehicles">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vehiclesOption.id === editForm.get('vehicles').value?.id ? editForm.get('vehicles').value : vehiclesOption" *ngFor="let vehiclesOption of vehicles; trackBy: trackVehiclesById">{{vehiclesOption.vehicleName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_motors">Motors</label>
+                    <select class="form-control" id="field_motors" name="motors" formControlName="motors">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="motorsOption.id === editForm.get('motors').value?.id ? editForm.get('motors').value : motorsOption" *ngFor="let motorsOption of motors; trackBy: trackMotorsById">{{motorsOption.motorName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_transmission">Transmission</label>
+                    <select class="form-control" id="field_transmission" name="transmission" formControlName="transmission">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transmissionOption.id === editForm.get('transmission').value?.id ? editForm.get('transmission').value : transmissionOption" *ngFor="let transmissionOption of transmissions; trackBy: trackTransmissionById">{{transmissionOption.transmissionName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_steering">Steering</label>
+                    <select class="form-control" id="field_steering" name="steering" formControlName="steering">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="steeringOption.id === editForm.get('steering').value?.id ? editForm.get('steering').value : steeringOption" *ngFor="let steeringOption of steerings; trackBy: trackSteeringById">{{steeringOption.steeringName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nationalities">Nationalities</label>
+                    <select class="form-control" id="field_nationalities" name="nationalities" formControlName="nationalities">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="nationalitiesOption.id === editForm.get('nationalities').value?.id ? editForm.get('nationalities').value : nationalitiesOption" *ngFor="let nationalitiesOption of nationalities; trackBy: trackNationalitiesById">{{nationalitiesOption.nationalityName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

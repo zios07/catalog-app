@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity VehicleModels.
+    -->
+    <changeSet id="20190713224923-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="vehicles_id"
+                                 baseTableName="vehicle_models"
+                                 constraintName="fk_vehicle_models_vehicles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vehicles"/>
+
+        <addForeignKeyConstraint baseColumnNames="motors_id"
+                                 baseTableName="vehicle_models"
+                                 constraintName="fk_vehicle_models_motors_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motors"/>
+
+        <addForeignKeyConstraint baseColumnNames="transmission_id"
+                                 baseTableName="vehicle_models"
+                                 constraintName="fk_vehicle_models_transmission_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transmission"/>
+
+        <addForeignKeyConstraint baseColumnNames="steering_id"
+                                 baseTableName="vehicle_models"
+                                 constraintName="fk_vehicle_models_steering_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="steering"/>
+
+        <addForeignKeyConstraint baseColumnNames="nationalities_id"
+                                 baseTableName="vehicle_models"
+                                 constraintName="fk_vehicle_models_nationalities_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="nationalities"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,52 @@
+{
+    "name": "Families",
+    "fields": [
+        {
+            "fieldName": "familyName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "familyImage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "familyIcon",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "characteristics",
+            "otherEntityRelationshipName": "families",
+            "relationshipName": "characteristics"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "parts",
+            "otherEntityRelationshipName": "families",
+            "relationshipName": "parts"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "lines",
+            "otherEntityRelationshipName": "families",
+            "relationshipName": "lines",
+            "otherEntityField": "lineName"
+        }
+    ],
+    "changelogDate": "20190713224912",
+    "entityTableName": "families",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

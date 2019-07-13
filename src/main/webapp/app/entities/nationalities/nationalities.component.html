@@ -1,0 +1,57 @@
+<div>
+    <h2 id="page-heading">
+        <span>Nationalities</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-nationalities" [routerLink]="['/nationalities/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Nationalities
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="nationalities?.length === 0">
+        <span>No nationalities found</span>
+    </div>
+    <div class="table-responsive" *ngIf="nationalities?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nationality Name</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let nationalities of nationalities ;trackBy: trackId">
+                <td><a [routerLink]="['/nationalities', nationalities.id, 'view' ]">{{nationalities.id}}</a></td>
+                <td>{{nationalities.nationalityName}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/nationalities', nationalities.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/nationalities', nationalities.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'nationalities', { outlets: { popup: nationalities.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

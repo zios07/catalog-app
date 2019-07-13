@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="crossReference">
+            <h2><span>Cross Reference</span> {{crossReference.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Code In Provider</span></dt>
+                <dd>
+                    <span>{{crossReference.codeInProvider}}</span>
+                </dd>
+                <dt><span>View Catalog</span></dt>
+                <dd>
+                    <span>{{crossReference.viewCatalog}}</span>
+                </dd>
+                <dt><span>Providers</span></dt>
+                <dd>
+                    <div *ngIf="crossReference.providers">
+                        <a [routerLink]="['/providers', crossReference.providers?.id, 'view']">{{crossReference.providers?.providerName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Parts</span></dt>
+                <dd>
+                    <div *ngIf="crossReference.parts">
+                        <a [routerLink]="['/parts', crossReference.parts?.id, 'view']">{{crossReference.parts?.partsName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cross-reference', crossReference.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

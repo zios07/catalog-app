@@ -1,0 +1,35 @@
+{
+    "name": "VehicleBrands",
+    "fields": [
+        {
+            "fieldName": "vehicleBrandName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 40
+        },
+        {
+            "fieldName": "vehicleBrandImage",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "vehicles",
+            "otherEntityRelationshipName": "vehicleBrands",
+            "relationshipName": "vehicles"
+        }
+    ],
+    "changelogDate": "20190713224917",
+    "entityTableName": "vehicle_brands",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

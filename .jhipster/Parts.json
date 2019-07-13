@@ -1,0 +1,79 @@
+{
+    "name": "Parts",
+    "fields": [
+        {
+            "fieldName": "codeParts",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 30
+        },
+        {
+            "fieldName": "partsName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "partImageLinkPic360",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "partVideo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "partTechnicalManual",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "underDevelopment",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "inactive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "ean",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 13
+        },
+        {
+            "fieldName": "sku",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "vehicleModels",
+            "otherEntityRelationshipName": "parts",
+            "relationshipName": "vehicleModels",
+            "otherEntityField": "vehicleModel",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "families",
+            "otherEntityRelationshipName": "parts",
+            "relationshipName": "families",
+            "otherEntityField": "familyName"
+        }
+    ],
+    "changelogDate": "20190713224914",
+    "entityTableName": "parts",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

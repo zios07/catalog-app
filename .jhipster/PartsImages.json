@@ -1,0 +1,27 @@
+{
+    "name": "PartsImages",
+    "fields": [
+        {
+            "fieldName": "partImage",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "parts",
+            "otherEntityRelationshipName": "partsImages",
+            "relationshipName": "parts",
+            "otherEntityField": "partsName"
+        }
+    ],
+    "changelogDate": "20190713224915",
+    "entityTableName": "parts_images",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

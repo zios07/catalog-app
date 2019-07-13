@@ -1,0 +1,40 @@
+{
+    "name": "Characteristics",
+    "fields": [
+        {
+            "fieldName": "characteristicsName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 30
+        },
+        {
+            "fieldName": "viewCatalog",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "viewSpecialClient",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "families",
+            "otherEntityRelationshipName": "characteristics",
+            "relationshipName": "families",
+            "otherEntityField": "familyName"
+        }
+    ],
+    "changelogDate": "20190713224913",
+    "entityTableName": "characteristics",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

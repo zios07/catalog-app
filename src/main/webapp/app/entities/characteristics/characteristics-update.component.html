@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-characteristics-heading">Create or edit a Characteristics</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_characteristicsName">Characteristics Name</label>
+                    <input type="text" class="form-control" name="characteristicsName" id="field_characteristicsName"
+                           formControlName="characteristicsName"/>
+                    <div *ngIf="editForm.get('characteristicsName').invalid && (editForm.get('characteristicsName').dirty || editForm.get('characteristicsName').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('characteristicsName').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('characteristicsName').errors.maxlength">
+                        This field cannot be longer than 30 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_viewCatalog">View Catalog</label>
+                    <input type="checkbox" class="form-control" name="viewCatalog" id="field_viewCatalog"
+                           formControlName="viewCatalog"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_viewSpecialClient">View Special Client</label>
+                    <input type="checkbox" class="form-control" name="viewSpecialClient" id="field_viewSpecialClient"
+                           formControlName="viewSpecialClient"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_families">Families</label>
+                    <select class="form-control" id="field_families" name="families" formControlName="families">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="familiesOption.id === editForm.get('families').value?.id ? editForm.get('families').value : familiesOption" *ngFor="let familiesOption of families; trackBy: trackFamiliesById">{{familiesOption.familyName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
