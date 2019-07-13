@@ -1,0 +1,166 @@
+entity Catalogs {
+  catalogName String required maxlength(40),
+  catalogoImagemCover1 String,
+  catalogoImagemCover2 String,
+  catalogoImagemCover3 String,
+  catalogoImagemCover4 String
+}
+
+entity Lines {
+  lineName String required maxlength(40),
+  lineImage String,
+  lineIcon String
+}
+
+entity Families {
+  familyName String required maxlength(40),
+  familyImage String,
+  familyIcon String
+}
+
+entity Characteristics {
+  characteristicsName String required maxlength(30),
+  viewCatalog Boolean,
+  viewSpecialClient Boolean
+}
+
+entity Parts {
+  codeParts String required maxlength(30),
+  partsName String required,
+  partImageLinkPic360 String,
+  partVideo String,
+  partTechnicalManual String,
+  underDevelopment Boolean,
+  inactive Boolean,
+  ean String minlength(13),
+  sku String
+}
+
+entity PartsImages {
+  partImage String
+}
+
+
+entity PartsCharacteristics {
+  information String
+}
+
+entity VehicleBrands {
+  vehicleBrandName String required maxlength(40),
+  vehicleBrandImage String
+}
+
+entity Vehicles {
+  Vehicle String required maxlength(40),
+  code String maxlength(10)
+}
+
+entity Motors {
+  motorName String required maxlength(40)
+}
+
+entity Transmission {
+  transmissionName String required maxlength(40),
+  transmissaoImage String
+}
+
+entity Steering {
+  steeringName String required maxlength(40),
+  steeringImage String
+}
+
+entity Nationalities {
+  nationalityName String required maxlength(40)
+}
+
+entity VehicleModels {
+  vehicleModel String required maxlength(40),
+  startProduction LocalDate,
+  finishProduction LocalDate,
+  startChassi String minlength(17),
+  fineshChassi String minlength(17),
+  code String maxlength(10),
+  fleetQuantity Integer,
+}
+
+entity Providers {
+  providerName String required maxlength(40),
+  manufacturer Boolean
+}
+
+entity CrossReference {
+  codeInProvider String required maxlength(30),
+  viewCatalog Boolean
+}
+
+relationship ManyToOne {
+  Catalogs{user(login)} to User  
+}
+
+relationship OneToMany {
+  Catalogs{lines} to Lines{Catalogs(catalogName)}
+}
+
+relationship OneToMany {
+  Lines{families} to Families{lines(lineName)}
+}
+
+relationship OneToMany {
+  Families{characteristics} to Characteristics{Families(familyName)}
+}
+
+relationship OneToMany {
+  Families{parts} to Parts{Families(familyName)}
+}
+
+relationship OneToMany {
+  VehicleBrands{vehicles} to Vehicles{VehicleBrands(vehicleBrandName)}
+}
+
+relationship ManyToOne {
+  VehicleModels{Vehicles(vehicleName)} to Vehicles
+}
+
+relationship ManyToOne {
+  VehicleModels{Motors(motorName)} to Motors
+}
+
+relationship ManyToOne {
+  VehicleModels{transmission(transmissionName)} to Transmission
+}
+
+relationship ManyToOne {
+  VehicleModels{steering(SteeringName)} to Steering
+}
+
+relationship ManyToOne {
+  VehicleModels{nationalities(nationalityName)} to Nationalities
+}
+
+relationship ManyToMany {
+  Parts{VehicleModels(vehicleModel)} to VehicleModels{parts}
+}
+
+relationship ManyToOne {
+  CrossReference{providers(providerName)} to Providers
+}
+
+relationship ManyToOne {
+  CrossReference{parts(partsName)} to Parts
+}
+
+relationship ManyToOne {
+  PartsImages{parts(partsName)} to Parts
+}
+
+relationship ManyToOne {
+  PartsCharacteristics{parts(partsName)} to Parts
+}
+
+relationship ManyToOne {
+  PartsCharacteristics{characteristics(characteristicsName)} to Characteristics
+}
+
+paginate Parts, CrossReference, VehicleModels, Vehicles, Motors, VehicleBrands, Families, PartsCharacteristics  with pagination
+
+
