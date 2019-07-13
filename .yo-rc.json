@@ -1,0 +1,45 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "catalogapp",
+    "packageName": "com.catalogapp",
+    "packageFolder": "com/catalogapp",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling",
+      "protractor"
+    ],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "6.1.2",
+    "jwtSecretKey": "ODZjZWY3YWE5YTJiOTYxZDc2NmQ1NDYzYjg1YTczZWQyOGE4M2Q0Y2U1MjJhYmU4NGJjMDI1YWEwN2M1NmU3YTkxNWQ3OTAxYzNkZDQyMjg3NDU2NmJlNzRlZGQ2ZWFhZGIzYzY4ODA4Nzk0NzUzYjUzNjcxOTViOGRhNmRjNDQ=",
+    "clientTheme": "none",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "zios07",
+  "repository-name": "catalog-app"
+}
