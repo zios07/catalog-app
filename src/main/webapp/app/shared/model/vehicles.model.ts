@@ -3,6 +3,7 @@ import { IVehicleBrands } from 'app/shared/model/vehicle-brands.model';
 export interface IVehicles {
   id?: number;
   vehicle?: string;
+  vehicleName?: string;
   code?: string;
   vehicleBrands?: IVehicleBrands;
 }
