@@ -5,8 +5,54 @@ stages:
   - test
   - deploy
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+variables:
+  HEROKU_API_KEY: ea108adc-9001-4110-adb5-569c1b183716
+
 maven-build:
   stage: build
+  # image: maven:latest
+  script:
+    - ./mvnw -Pprod clean package -DskipTests
+
+back-end-test:
+  stage: test
   image: maven:latest
   script:
-    - ./mvnw -Pprod clean package
+    - ./mvnw -Pprod clean test
+
+front-end-test:
+  stage: test
+  # image: maven:latest
+  script:
+    - npm start webpack:test
+
+deploy-staging:
+  stage: deploy
+  image: ruby:2.3
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=catalog-mono-staging --api-key=$HEROKU_API_KEY
+  only:
+    - develop
+  tags:
+    - docker
+
+deploy-production:
+  stage: deploy
+  image: ruby:2.3
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=catalog-mono-production --api-key=$HEROKU_API_KEY
+  only:
+    - master
+  tags:
+    - docker
