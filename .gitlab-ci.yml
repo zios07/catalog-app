@@ -1,0 +1,12 @@
+image: docker:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+maven-build:
+  stage: build
+  image: maven:latest
+  script:
+    - ./mvnw -Pprod clean package
