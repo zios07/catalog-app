@@ -19,17 +19,11 @@ maven-build:
   script:
     - ./mvnw -Pprod clean package -DskipTests
 
-back-end-test:
+unit-test:
   stage: test
   image: maven:latest
   script:
-    - mvn clean test
-
-front-end-test:
-  stage: test
-  image: node:latest
-  script:
-    - npm start webpack:test
+    - ./mvnw clean test
 
 deploy-staging:
   stage: deploy
