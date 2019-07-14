@@ -15,7 +15,7 @@ variables:
 
 maven-build:
   stage: build
-  # image: maven:latest
+  image: maven:latest
   script:
     - ./mvnw -Pprod clean package -DskipTests
 
@@ -23,11 +23,11 @@ back-end-test:
   stage: test
   image: maven:latest
   script:
-    - ./mvnw -Pprod clean test
+    - ./mvnw clean test
 
 front-end-test:
   stage: test
-  # image: maven:latest
+  image: node:latest
   script:
     - npm start webpack:test
 
