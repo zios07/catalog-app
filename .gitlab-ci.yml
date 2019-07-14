@@ -23,7 +23,7 @@ back-end-test:
   stage: test
   image: maven:latest
   script:
-    - ./mvnw clean test
+    - mvn clean test
 
 front-end-test:
   stage: test
