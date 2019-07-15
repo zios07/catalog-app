@@ -31,7 +31,7 @@ public class Characteristics implements Serializable {
     private Boolean viewSpecialClient;
 
     @ManyToOne
-    @JsonIgnoreProperties("characteristics")
+    @JsonIgnoreProperties("coverImages")
     private Families families;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

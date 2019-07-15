@@ -2,9 +2,9 @@ package com.catalogapp.web.rest;
 
 import com.catalogapp.CatalogappApp;
 import com.catalogapp.domain.Parts;
+import com.catalogapp.repository.AttachmentRepository;
 import com.catalogapp.repository.PartsRepository;
 import com.catalogapp.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -12,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -68,8 +67,15 @@ public class PartsResourceIT {
     @Autowired
     private PartsRepository partsRepository;
 
+    @Autowired
+    private AttachmentRepository attachmentRepository;
+
     @Mock
     private PartsRepository partsRepositoryMock;
+
+
+    @Mock
+    private AttachmentRepository attachmentRepositoryMock;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -93,7 +99,7 @@ public class PartsResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PartsResource partsResource = new PartsResource(partsRepository);
+        final PartsResource partsResource = new PartsResource(partsRepository, attachmentRepository);
         this.restPartsMockMvc = MockMvcBuilders.standaloneSetup(partsResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -252,7 +258,7 @@ public class PartsResourceIT {
     
     @SuppressWarnings({"unchecked"})
     public void getAllPartsWithEagerRelationshipsIsEnabled() throws Exception {
-        PartsResource partsResource = new PartsResource(partsRepositoryMock);
+        PartsResource partsResource = new PartsResource(partsRepositoryMock, attachmentRepositoryMock);
         when(partsRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         MockMvc restPartsMockMvc = MockMvcBuilders.standaloneSetup(partsResource)
@@ -269,7 +275,7 @@ public class PartsResourceIT {
 
     @SuppressWarnings({"unchecked"})
     public void getAllPartsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        PartsResource partsResource = new PartsResource(partsRepositoryMock);
+        PartsResource partsResource = new PartsResource(partsRepositoryMock, attachmentRepositoryMock);
             when(partsRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
             MockMvc restPartsMockMvc = MockMvcBuilders.standaloneSetup(partsResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)

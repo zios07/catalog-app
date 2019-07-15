@@ -14,16 +14,27 @@
                     <span>{{parts.partsName}}</span>
                 </dd>
                 <dt><span>Part Image Link Pic 360</span></dt>
+
+                <dt><span>Part image</span></dt>
+
                 <dd>
-                    <img [src]="parts.partImageLinkPic360" alt="Image unavailable">
+                    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                        <mdb-carousel-item>
+                            <img class="d-block w-100" src="data:image/jpeg;base64,{{parts.image?.content}}"
+                                alt="First slide">
+                        </mdb-carousel-item>
+                    </mdb-carousel>
                 </dd>
+
                 <dt><span>Part Video</span></dt>
                 <dd>
                     <span>{{parts.partVideo}}</span>
                 </dd>
                 <dt><span>Part Technical Manual</span></dt>
                 <dd>
-                    <span>{{parts.partTechnicalManual}}</span>
+                    <span>{{parts.technicalManual?.name}}</span>
+                    <br>
+                    <a class="link" (click)="downloadTechnicalManual()" *ngIf="parts.technicalManual">download</a>
                 </dd>
                 <dt><span>Under Development</span></dt>
                 <dd>
@@ -44,7 +55,8 @@
                 <dt><span>Vehicle Models</span></dt>
                 <dd>
                     <span *ngFor="let vehicleModels of parts.vehicleModels; let last = last">
-                        <a [routerLink]="['/vehicle-models', vehicleModels?.id, 'view' ]">{{vehicleModels.vehicleModel}}</a>{{last ? '' : ', '}}
+                        <a
+                            [routerLink]="['/vehicle-models', vehicleModels?.id, 'view' ]">{{vehicleModels.vehicleModel}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span>Families</span></dt>
@@ -55,15 +67,11 @@
                 </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/parts', parts.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/parts', parts.id, 'edit']" class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
             </button>
         </div>

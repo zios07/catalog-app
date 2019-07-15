@@ -1,16 +1,16 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { JhiAlertService } from 'ng-jhipster';
-import { IParts, Parts } from 'app/shared/model/parts.model';
-import { PartsService } from './parts.service';
-import { IVehicleModels } from 'app/shared/model/vehicle-models.model';
+import { FamiliesService } from 'app/entities/families';
 import { VehicleModelsService } from 'app/entities/vehicle-models';
 import { IFamilies } from 'app/shared/model/families.model';
-import { FamiliesService } from 'app/entities/families';
+import { IParts, Parts } from 'app/shared/model/parts.model';
+import { IVehicleModels } from 'app/shared/model/vehicle-models.model';
+import { JhiAlertService } from 'ng-jhipster';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { PartsService } from './parts.service';
 
 @Component({
   selector: 'jhi-parts-update',
@@ -22,6 +22,10 @@ export class PartsUpdateComponent implements OnInit {
   vehiclemodels: IVehicleModels[];
 
   families: IFamilies[];
+
+  technicalManual;
+
+  image;
 
   editForm = this.fb.group({
     id: [],
@@ -68,6 +72,14 @@ export class PartsUpdateComponent implements OnInit {
       .subscribe((res: IFamilies[]) => (this.families = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
+  selectTechnicalManual(event) {
+    this.technicalManual = event.target.files[0];
+  }
+
+  selectImage(event) {
+    this.image = event.target.files[0];
+  }
+
   updateForm(parts: IParts) {
     this.editForm.patchValue({
       id: parts.id,
@@ -95,7 +107,7 @@ export class PartsUpdateComponent implements OnInit {
     if (parts.id !== undefined) {
       this.subscribeToSaveResponse(this.partsService.update(parts));
     } else {
-      this.subscribeToSaveResponse(this.partsService.create(parts));
+      this.subscribeToSaveResponse(this.partsService.create(parts, this.image, this.technicalManual));
     }
   }
 

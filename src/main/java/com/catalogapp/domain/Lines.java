@@ -36,7 +36,7 @@ public class Lines implements Serializable {
     private Set<Families> families = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties("lines")
+    @JsonIgnoreProperties({"lines", "coverImages"})
     private Catalogs catalogs;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

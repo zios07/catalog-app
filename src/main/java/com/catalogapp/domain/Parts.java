@@ -33,6 +33,12 @@ public class Parts implements Serializable {
     @Column(name = "part_image_link_pic_360")
     private String partImageLinkPic360;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Attachment technicalManual;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Attachment image;
+
     @Column(name = "part_video")
     private String partVideo;
 
@@ -182,6 +188,22 @@ public class Parts implements Serializable {
     public Parts sku(String sku) {
         this.sku = sku;
         return this;
+    }
+
+    public Attachment getTechnicalManual() {
+        return technicalManual;
+    }
+
+    public void setTechnicalManual(Attachment technicalManual) {
+        this.technicalManual = technicalManual;
+    }
+
+    public Attachment getImage() {
+        return image;
+    }
+
+    public void setImage(Attachment image) {
+        this.image = image;
     }
 
     public void setSku(String sku) {

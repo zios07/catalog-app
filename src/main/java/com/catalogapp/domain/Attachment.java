@@ -1,8 +1,13 @@
 package com.catalogapp.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "attachments")
@@ -23,15 +28,18 @@ public class Attachment implements Serializable {
 
     private Date date;
 
+    private String mime;
+
     public Attachment() {
 
     }
 
-    public Attachment(String name, String description, byte[] content, Date date) {
+    public Attachment(String name, String description, byte[] content, Date date, String mime) {
         this.name = name;
         this.description = description;
         this.content = content;
         this.date = date;
+        this.mime = mime;
     }
 
     public Long getId() {
@@ -72,5 +80,19 @@ public class Attachment implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * @return the mime
+     */
+    public String getMime() {
+        return mime;
+    }
+
+    /**
+     * @param mime the mime to set
+     */
+    public void setMime(String mime) {
+        this.mime = mime;
     }
 }

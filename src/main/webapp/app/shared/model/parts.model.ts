@@ -14,6 +14,7 @@ export interface IParts {
   sku?: string;
   vehicleModels?: IVehicleModels[];
   families?: IFamilies;
+  technicalManual: any;
 }
 
 export class Parts implements IParts {
@@ -29,7 +30,8 @@ export class Parts implements IParts {
     public ean?: string,
     public sku?: string,
     public vehicleModels?: IVehicleModels[],
-    public families?: IFamilies
+    public families?: IFamilies,
+    public technicalManual?: any
   ) {
     this.underDevelopment = this.underDevelopment || false;
     this.inactive = this.inactive || false;
