@@ -19,7 +19,7 @@ export class CatalogsService {
     const fd = new FormData();
 
     for (let i = 0; i < photos.length; i++) {
-      var blob = new Blob([photos[i]], { type: 'application/json' });
+      const blob = new Blob([photos[i]], { type: 'application/json' });
       fd.append('photos', blob, photos[i].name);
     }
 
