@@ -14,7 +14,7 @@ export interface IParts {
   sku?: string;
   vehicleModels?: IVehicleModels[];
   families?: IFamilies;
-  technicalManual: any;
+  technicalManual?: any;
 }
 
 export class Parts implements IParts {
