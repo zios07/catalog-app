@@ -15,8 +15,16 @@ export class CatalogsService {
 
   constructor(protected http: HttpClient) {}
 
-  create(catalogs: ICatalogs): Observable<EntityResponseType> {
-    return this.http.post<ICatalogs>(this.resourceUrl, catalogs, { observe: 'response' });
+  create(catalogs, photos) {
+    const fd = new FormData();
+
+    for (let i = 0; i < photos.length; i++) {
+      var blob = new Blob([photos[i]], { type: 'application/json' });
+      fd.append('photos', blob, photos[i].name);
+    }
+
+    fd.append('catalogs', JSON.stringify(catalogs));
+    return this.http.post(this.resourceUrl, fd);
   }
 
   update(catalogs: ICatalogs): Observable<EntityResponseType> {

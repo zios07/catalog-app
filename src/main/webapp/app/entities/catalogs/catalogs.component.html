@@ -19,10 +19,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Catalog Name</span></th>
-            <th><span>Catalogo Imagem Cover 1</span></th>
-            <th><span>Catalogo Imagem Cover 2</span></th>
-            <th><span>Catalogo Imagem Cover 3</span></th>
-            <th><span>Catalogo Imagem Cover 4</span></th>
+            <th><span>Number of covers</span></th>
             <th><span>User</span></th>
             <th></th>
             </tr>
@@ -31,10 +28,7 @@
             <tr *ngFor="let catalogs of catalogs ;trackBy: trackId">
                 <td><a [routerLink]="['/catalogs', catalogs.id, 'view' ]">{{catalogs.id}}</a></td>
                 <td>{{catalogs.catalogName}}</td>
-                <td>{{catalogs.catalogoImagemCover1}}</td>
-                <td>{{catalogs.catalogoImagemCover2}}</td>
-                <td>{{catalogs.catalogoImagemCover3}}</td>
-                <td>{{catalogs.catalogoImagemCover4}}</td>
+                <td>{{catalogs.coverImages?.length}}</td>
                 <td>
                     {{catalogs.user?.login}}
                 </td>

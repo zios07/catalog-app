@@ -11,11 +11,12 @@ import {
   catalogsRoute,
   catalogsPopupRoute
 } from './';
+import { MDBRootModule } from 'angular-bootstrap-md';
 
 const ENTITY_STATES = [...catalogsRoute, ...catalogsPopupRoute];
 
 @NgModule({
-  imports: [CatalogappSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [CatalogappSharedModule, RouterModule.forChild(ENTITY_STATES), MDBRootModule],
   declarations: [
     CatalogsComponent,
     CatalogsDetailComponent,

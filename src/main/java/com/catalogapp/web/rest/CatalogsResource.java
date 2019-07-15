@@ -1,21 +1,30 @@
 package com.catalogapp.web.rest;
 
+import com.catalogapp.domain.Attachment;
 import com.catalogapp.domain.Catalogs;
 import com.catalogapp.repository.CatalogsRepository;
+import com.catalogapp.service.util.AnnotationExclusionStrategy;
 import com.catalogapp.web.rest.errors.BadRequestAlertException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,15 +51,29 @@ public class CatalogsResource {
     /**
      * {@code POST  /catalogs} : Create a new catalogs.
      *
-     * @param catalogs the catalogs to create.
+     * @param strCatalogs the catalogs to create.
+     * @param photos      the catalog images.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new catalogs, or with status {@code 400 (Bad Request)} if the catalogs has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/catalogs")
-    public ResponseEntity<Catalogs> createCatalogs(@Valid @RequestBody Catalogs catalogs) throws URISyntaxException {
+    public ResponseEntity<Catalogs> createCatalogs(@RequestParam("catalogs") String strCatalogs, @RequestParam("photos") MultipartFile[] photos) throws URISyntaxException, IOException {
+        Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new AnnotationExclusionStrategy()).create();
+        Catalogs catalogs = gson.fromJson(strCatalogs, Catalogs.class);
         log.debug("REST request to save Catalogs : {}", catalogs);
         if (catalogs.getId() != null) {
             throw new BadRequestAlertException("A new catalogs cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (photos.length > 0) {
+            List<Attachment> attachments = new ArrayList<>();
+            for (MultipartFile photo : photos) {
+                Attachment attachment = new Attachment();
+                attachment.setContent(photo.getBytes());
+                attachment.setDate(new Date());
+                attachment.setName(photo.getOriginalFilename());
+                attachments.add(attachment);
+            }
+            catalogs.setCoverImages(attachments);
         }
         Catalogs result = catalogsRepository.save(catalogs);
         return ResponseEntity.created(new URI("/api/catalogs/" + result.getId()))

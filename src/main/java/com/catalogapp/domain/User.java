@@ -1,5 +1,6 @@
 package com.catalogapp.domain;
 
+import com.catalogapp.annotation.Exclude;
 import com.catalogapp.config.Constants;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -81,6 +82,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Instant resetDate = null;
 
     @JsonIgnore
+    @Exclude
     @ManyToMany
     @JoinTable(
         name = "jhi_user_authority",

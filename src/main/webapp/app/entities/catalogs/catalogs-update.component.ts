@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
-import { ICatalogs, Catalogs } from 'app/shared/model/catalogs.model';
+import { Catalogs, ICatalogs } from 'app/shared/model/catalogs.model';
 import { CatalogsService } from './catalogs.service';
 import { IUser, UserService } from 'app/core';
 
@@ -17,6 +17,7 @@ export class CatalogsUpdateComponent implements OnInit {
   isSaving: boolean;
 
   users: IUser[];
+  coverImages: [];
 
   editForm = this.fb.group({
     id: [],
@@ -25,6 +26,7 @@ export class CatalogsUpdateComponent implements OnInit {
     catalogoImagemCover2: [],
     catalogoImagemCover3: [],
     catalogoImagemCover4: [],
+    coverImages: [],
     user: []
   });
 
@@ -50,6 +52,10 @@ export class CatalogsUpdateComponent implements OnInit {
       .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
+  selectCoverImages(event) {
+    this.coverImages = event.target.files;
+  }
+
   updateForm(catalogs: ICatalogs) {
     this.editForm.patchValue({
       id: catalogs.id,
@@ -60,6 +66,7 @@ export class CatalogsUpdateComponent implements OnInit {
       catalogoImagemCover4: catalogs.catalogoImagemCover4,
       user: catalogs.user
     });
+    // this.coverImages = catalogs.coverImages ? catalogs.coverImages : [];
   }
 
   previousState() {
@@ -72,7 +79,7 @@ export class CatalogsUpdateComponent implements OnInit {
     if (catalogs.id !== undefined) {
       this.subscribeToSaveResponse(this.catalogsService.update(catalogs));
     } else {
-      this.subscribeToSaveResponse(this.catalogsService.create(catalogs));
+      this.subscribeToSaveResponse(this.catalogsService.create(catalogs, this.coverImages));
     }
   }
 
@@ -89,7 +96,7 @@ export class CatalogsUpdateComponent implements OnInit {
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<ICatalogs>>) {
+  protected subscribeToSaveResponse(result: any) {
     result.subscribe(() => this.onSaveSuccess(), () => this.onSaveError());
   }
 
@@ -101,6 +108,7 @@ export class CatalogsUpdateComponent implements OnInit {
   protected onSaveError() {
     this.isSaving = false;
   }
+
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }

@@ -1,4 +1,5 @@
 package com.catalogapp.domain;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -6,6 +7,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,6 +39,9 @@ public class Catalogs implements Serializable {
 
     @Column(name = "catalogo_imagem_cover_4")
     private String catalogoImagemCover4;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Attachment> coverImages;
 
     @OneToMany(mappedBy = "catalogs")
     private Set<Lines> lines = new HashSet<>();
@@ -126,6 +131,14 @@ public class Catalogs implements Serializable {
     public Catalogs lines(Set<Lines> lines) {
         this.lines = lines;
         return this;
+    }
+
+    public List<Attachment> getCoverImages() {
+        return coverImages;
+    }
+
+    public void setCoverImages(List<Attachment> coverImages) {
+        this.coverImages = coverImages;
     }
 
     public Catalogs addLines(Lines lines) {

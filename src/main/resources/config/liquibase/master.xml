@@ -14,32 +14,4 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224910_added_entity_Catalogs.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224911_added_entity_Lines.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224912_added_entity_Families.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224913_added_entity_Characteristics.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224914_added_entity_Parts.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224915_added_entity_PartsImages.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224916_added_entity_PartsCharacteristics.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224917_added_entity_VehicleBrands.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224918_added_entity_Vehicles.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224919_added_entity_Motors.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224920_added_entity_Transmission.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224921_added_entity_Steering.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224922_added_entity_Nationalities.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224923_added_entity_VehicleModels.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224924_added_entity_Providers.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224925_added_entity_CrossReference.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20190713224910_added_entity_constraints_Catalogs.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224911_added_entity_constraints_Lines.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224912_added_entity_constraints_Families.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224913_added_entity_constraints_Characteristics.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224914_added_entity_constraints_Parts.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224915_added_entity_constraints_PartsImages.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224916_added_entity_constraints_PartsCharacteristics.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224918_added_entity_constraints_Vehicles.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224923_added_entity_constraints_VehicleModels.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190713224925_added_entity_constraints_CrossReference.xml" relativeToChangelogFile="false"/>
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

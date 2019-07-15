@@ -8,6 +8,7 @@ export interface ICatalogs {
   catalogoImagemCover2?: string;
   catalogoImagemCover3?: string;
   catalogoImagemCover4?: string;
+  coverImages?: [];
   lines?: ILines[];
   user?: IUser;
 }
@@ -20,6 +21,7 @@ export class Catalogs implements ICatalogs {
     public catalogoImagemCover2?: string,
     public catalogoImagemCover3?: string,
     public catalogoImagemCover4?: string,
+    public coverImages?: [],
     public lines?: ILines[],
     public user?: IUser
   ) {}

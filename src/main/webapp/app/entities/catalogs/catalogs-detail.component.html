@@ -9,26 +9,23 @@
                 <dd>
                     <span>{{catalogs.catalogName}}</span>
                 </dd>
-                <dt><span>Catalogo Imagem Cover 1</span></dt>
-                <dd>
-                    <span>{{catalogs.catalogoImagemCover1}}</span>
-                </dd>
-                <dt><span>Catalogo Imagem Cover 2</span></dt>
-                <dd>
-                    <span>{{catalogs.catalogoImagemCover2}}</span>
-                </dd>
-                <dt><span>Catalogo Imagem Cover 3</span></dt>
-                <dd>
-                    <span>{{catalogs.catalogoImagemCover3}}</span>
-                </dd>
-                <dt><span>Catalogo Imagem Cover 4</span></dt>
-                <dd>
-                    <span>{{catalogs.catalogoImagemCover4}}</span>
-                </dd>
                 <dt><span>User</span></dt>
                 <dd>
                     {{catalogs.user?.login}}
                 </dd>
+
+                <dt><span>Cover photos</span></dt>
+
+                <dd>
+                    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                        <mdb-carousel-item *ngFor="let image of catalogs.coverImages">
+                            <img class="d-block w-100"
+                                 src="data:image/jpeg;base64,{{image.content}}" alt="First slide">
+                        </mdb-carousel-item>
+                    </mdb-carousel>
+                </dd>
+
+
             </dl>
 
             <button type="submit"

@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
-@EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
+@EnableConfigurationProperties({ApplicationProperties.class})
 public class CatalogappApp implements InitializingBean {
 
     private static final Logger log = LoggerFactory.getLogger(CatalogappApp.class);

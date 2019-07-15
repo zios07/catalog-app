@@ -37,17 +37,20 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:catalogapp;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: catalogapp
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/mydatabase
+    username: root
     hikari:
       poolName: Hikari
       auto-commit: false
   h2:
     console:
       enabled: false
+
   jpa:
-    database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+    hibernate:
+      ddl-auto: update
     database: H2
     show-sql: true
     properties:
@@ -56,9 +59,11 @@ spring:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-  liquibase:
-    # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  #  liquibase:
+  # Remove 'faker' if you do not want the sample data to be loaded automatically
+  #    contexts: dev, faker
   mail:
     host: localhost
     port: 25
