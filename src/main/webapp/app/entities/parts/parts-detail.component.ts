@@ -8,7 +8,7 @@ import { PartsService } from './parts.service';
   templateUrl: './parts-detail.component.html'
 })
 export class PartsDetailComponent implements OnInit {
-  parts: IParts;
+  parts;
 
   constructor(protected activatedRoute: ActivatedRoute, private partsService: PartsService) {}
 
