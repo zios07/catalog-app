@@ -14,11 +14,21 @@ import {
   partsRoute,
   partsPopupRoute
 } from './';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const ENTITY_STATES = [...partsRoute, ...partsPopupRoute];
 
 @NgModule({
-  imports: [CatalogappSharedModule, RouterModule.forChild(ENTITY_STATES), MatGridListModule, MatButtonModule, MatTableModule],
+  imports: [
+    CatalogappSharedModule,
+    RouterModule.forChild(ENTITY_STATES),
+    MatGridListModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
   declarations: [PartsComponent, PartsDetailComponent, PartsUpdateComponent, PartsDeleteDialogComponent, PartsDeletePopupComponent],
   entryComponents: [PartsComponent, PartsUpdateComponent, PartsDeleteDialogComponent, PartsDeletePopupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
