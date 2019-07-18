@@ -1,79 +1,126 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="parts">
-            <h2><span>Parts</span> {{parts.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span>Code Parts</span></dt>
-                <dd>
-                    <span>{{parts.codeParts}}</span>
-                </dd>
-                <dt><span>Parts Name</span></dt>
-                <dd>
-                    <span>{{parts.partsName}}</span>
-                </dd>
-                <dt><span>Part Image Link Pic 360</span></dt>
+<mat-grid-list cols="4" rowHeight="300px">
+    <mat-grid-tile colspan="3" rowspan="3">
 
+        <!-- Field 1 -->
+        <div class="row" style="width: 1000px; height: 700px" *ngIf="parts">
+            <div class="col-4">
                 <dt><span>Part image</span></dt>
-
                 <dd>
                     <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
                         <mdb-carousel-item>
-                            <img class="d-block w-100" src="data:image/jpeg;base64,{{parts.image?.content}}"
-                                alt="First slide">
+                            <img width="300px" height="300px" class="d-block"
+                                src="data:image/jpeg;base64,{{parts.image?.content}}" alt="First slide">
                         </mdb-carousel-item>
                     </mdb-carousel>
                 </dd>
+            </div>
+            <div class="col-8">
+                <h2><span>Parts</span> {{parts.id}}</h2>
+                <hr>
+                <jhi-alert-error></jhi-alert-error>
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Code Parts</span></dt>
+                    <dd>
+                        <span>{{parts.codeParts}}</span>
+                    </dd>
+                    <dt><span>Parts Name</span></dt>
+                    <dd>
+                        <span>{{parts.partsName}}</span>
+                    </dd>
+                    <!-- <dt><span>Part Image Link Pic 360</span></dt> -->
 
-                <dt><span>Part Video</span></dt>
-                <dd>
-                    <span>{{parts.partVideo}}</span>
-                </dd>
-                <dt><span>Part Technical Manual</span></dt>
-                <dd>
-                    <span>{{parts.technicalManual?.name}}</span>
-                    <br>
-                    <a class="link" (click)="downloadTechnicalManual()" *ngIf="parts.technicalManual">download</a>
-                </dd>
-                <dt><span>Under Development</span></dt>
-                <dd>
-                    <span>{{parts.underDevelopment}}</span>
-                </dd>
-                <dt><span>Inactive</span></dt>
-                <dd>
-                    <span>{{parts.inactive}}</span>
-                </dd>
-                <dt><span>Ean</span></dt>
-                <dd>
-                    <span>{{parts.ean}}</span>
-                </dd>
-                <dt><span>Sku</span></dt>
-                <dd>
-                    <span>{{parts.sku}}</span>
-                </dd>
-                <dt><span>Vehicle Models</span></dt>
-                <dd>
-                    <span *ngFor="let vehicleModels of parts.vehicleModels; let last = last">
-                        <a
-                            [routerLink]="['/vehicle-models', vehicleModels?.id, 'view' ]">{{vehicleModels.vehicleModel}}</a>{{last ? '' : ', '}}
-                    </span>
-                </dd>
-                <dt><span>Families</span></dt>
-                <dd>
-                    <div *ngIf="parts.families">
-                        <a [routerLink]="['/families', parts.families?.id, 'view']">{{parts.families?.familyName}}</a>
-                    </div>
-                </dd>
-            </dl>
 
-            <button type="submit" (click)="previousState()" class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
-            </button>
+                    <!-- <dt><span>Part Video</span></dt>
+                    <dd>
+                        <span>{{parts.partVideo}}</span>
+                    </dd> -->
+                    <dt><span>Part Technical Manual</span></dt>
+                    <dd>
+                        <span>{{parts.technicalManual?.name}}</span>
+                        <br>
+                        <a mat-raised-button class="link" (click)="downloadTechnicalManual()"
+                            *ngIf="parts.technicalManual">download</a>
+                    </dd>
+                    <dt><span>Under Development</span></dt>
+                    <dd>
+                        <span>{{parts.underDevelopment}}</span>
+                    </dd>
+                    <dt><span>Inactive</span></dt>
+                    <dd>
+                        <span>{{parts.inactive}}</span>
+                    </dd>
+                    <dt><span>Ean</span></dt>
+                    <dd>
+                        <span>{{parts.ean}}</span>
+                    </dd>
+                    <dt><span>Sku</span></dt>
+                    <dd>
+                        <span>{{parts.sku}}</span>
+                    </dd>
+                    <dt><span>Vehicle Models</span></dt>
+                    <dd>
+                        <span *ngFor="let vehicleModels of parts.vehicleModels; let last = last">
+                            <a
+                                [routerLink]="['/vehicle-models', vehicleModels?.id, 'view' ]">{{vehicleModels.vehicleModel}}</a>{{last ? '' : ', '}}
+                        </span>
+                    </dd>
+                    <dt><span>Families</span></dt>
+                    <dd>
+                        <div *ngIf="parts.families">
+                            <a
+                                [routerLink]="['/families', parts.families?.id, 'view']">{{parts.families?.familyName}}</a>
+                        </div>
+                    </dd>
+                </dl>
 
-            <button type="button" [routerLink]="['/parts', parts.id, 'edit']" class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
-            </button>
+                <button type="submit" (click)="previousState()" class="btn btn-info">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+
+                <button type="button" [routerLink]="['/parts', parts.id, 'edit']" class="btn btn-primary">
+                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                </button>
+            </div>
         </div>
-    </div>
-</div>
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="4">
+
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+        <hr>
+        <div class="example-container mat-elevation-z8" style="width: 800px; height: 300px; overflow: auto;">
+            <table style="width: 100%" mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+
+    </mat-grid-tile>
+</mat-grid-list>

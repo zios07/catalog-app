@@ -1,30 +1,29 @@
-import './vendor.ts';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { NgxWebstorageModule } from 'ngx-webstorage';
+import { CatalogappCoreModule } from 'app/core';
+import { CatalogappSharedModule } from 'app/shared';
+import * as moment from 'moment';
 import { NgJhipsterModule } from 'ng-jhipster';
-
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { CatalogappAccountModule } from './account/account.module';
+import { CatalogappAppRoutingModule } from './app-routing.module';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
+import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { CatalogappSharedModule } from 'app/shared';
-import { CatalogappCoreModule } from 'app/core';
-import { CatalogappAppRoutingModule } from './app-routing.module';
-import { CatalogappHomeModule } from './home/home.module';
-import { CatalogappAccountModule } from './account/account.module';
 import { CatalogappEntityModule } from './entities/entity.module';
-import * as moment from 'moment';
+import { CatalogappHomeModule } from './home/home.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
+import './vendor.ts';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
     NgJhipsterModule.forRoot({
       // set below to true to make alerts look like toast
